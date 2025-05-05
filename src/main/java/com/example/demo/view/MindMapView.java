@@ -11,6 +11,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
@@ -25,6 +26,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.Cursor;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 
 import com.example.demo.model.MindMapNode.NodeShape;
 
@@ -47,6 +50,18 @@ public class MindMapView extends Pane {
     private double dragStartY;
     private double nodeStartX;
     private double nodeStartY;
+
+    // 画布拖拽相关变量
+    private boolean canvasDragging = false;
+    private double canvasDragStartX;
+    private double canvasDragStartY;
+
+    // 画布变换相关变量
+    private double translateX = 0;
+    private double translateY = 0;
+    private double scaleValue = 1.0;
+    private final Translate translate = new Translate();
+    private final Scale scale = new Scale();
 
     // 右键菜单
     private ContextMenu contextMenu;
@@ -76,9 +91,18 @@ public class MindMapView extends Pane {
         setOnMousePressed(this::handleMousePressed);
         setOnMouseDragged(this::handleMouseDragged);
         setOnMouseReleased(this::handleMouseReleased);
+        // 添加鼠标滚轮事件
+        setOnScroll(this::handleScroll);
 
         // 初始化右键菜单
         initContextMenu();
+
+        // 初始化变换
+        getTransforms().addAll(translate, scale);
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        scale.setX(scaleValue);
+        scale.setY(scaleValue);
     }
 
     /**
@@ -344,6 +368,11 @@ public class MindMapView extends Pane {
 
         System.out.println("Canvas created with size: " + width + "x" + height);
 
+        // 应用当前的变换到画布上下文
+        linesGc.save();
+        linesGc.translate(translateX, translateY);
+        linesGc.scale(scaleValue, scaleValue);
+
         // 绘制所有节点的连线，包括根节点和自由节点
         for (MindMapNode node : mindMap.getAllNodes()) {
             // 如果节点有子节点，则绘制连线
@@ -351,6 +380,8 @@ public class MindMapView extends Pane {
                 drawConnections(linesGc, node);
             }
         }
+
+        linesGc.restore();
 
         // 绘制节点 - 直接添加到容器中，而不是画在画布上
         // 这样可以确保节点始终在连线上方显示
@@ -689,8 +720,17 @@ public class MindMapView extends Pane {
         text.setX(node.getX() + (node.getWidth() - textWidth) / 2);
         text.setY(node.getY() + (node.getHeight() + textHeight) / 2);
 
-        // 将节点添加到视图
-        getChildren().addAll(shape, text);
+        // 创建包含节点和文本的组
+        javafx.scene.Group nodeGroup = new javafx.scene.Group(shape, text);
+
+        // 应用当前的变换
+        nodeGroup.getTransforms().addAll(
+            new Translate(translateX, translateY),
+            new Scale(scaleValue, scaleValue, 0, 0)
+        );
+
+        // 将节点组添加到视图
+        getChildren().add(nodeGroup);
     }
 
     /**
@@ -876,7 +916,7 @@ public class MindMapView extends Pane {
         MindMapNode clickedNode = findNodeAt(event.getX(), event.getY());
 
         if (clickedNode != null) {
-            // 开始拖拽
+            // 开始拖拽节点
             draggedNode = clickedNode;
             dragStartX = event.getX();
             dragStartY = event.getY();
@@ -885,6 +925,12 @@ public class MindMapView extends Pane {
 
             // 更改鼠标样式
             setCursor(Cursor.MOVE);
+        } else {
+            // 开始拖拽画布
+            canvasDragging = true;
+            canvasDragStartX = event.getX();
+            canvasDragStartY = event.getY();
+            setCursor(Cursor.CLOSED_HAND);
         }
     }
 
@@ -893,20 +939,32 @@ public class MindMapView extends Pane {
      * @param event 鼠标事件
      */
     private void handleMouseDragged(MouseEvent event) {
-        if (draggedNode == null) {
-            return;
+        if (draggedNode != null) {
+            // 计算拖拽的偏移量（考虑缩放因素）
+            double offsetX = (event.getX() - dragStartX) / scaleValue;
+            double offsetY = (event.getY() - dragStartY) / scaleValue;
+
+            // 更新节点位置，并标记为手动定位
+            draggedNode.setX(nodeStartX + offsetX, true);
+            draggedNode.setY(nodeStartY + offsetY, true);
+
+            // 重绘
+            draw();
+        } else if (canvasDragging) {
+            // 计算拖拽的偏移量
+            double offsetX = event.getX() - canvasDragStartX;
+            double offsetY = event.getY() - canvasDragStartY;
+
+            // 更新画布位置
+            translateX += offsetX;
+            translateY += offsetY;
+            translate.setX(translateX);
+            translate.setY(translateY);
+
+            // 更新拖拽起始点
+            canvasDragStartX = event.getX();
+            canvasDragStartY = event.getY();
         }
-
-        // 计算拖拽的偏移量
-        double offsetX = event.getX() - dragStartX;
-        double offsetY = event.getY() - dragStartY;
-
-        // 更新节点位置，并标记为手动定位
-        draggedNode.setX(nodeStartX + offsetX, true);
-        draggedNode.setY(nodeStartY + offsetY, true);
-
-        // 重绘
-        draw();
     }
 
     /**
@@ -914,20 +972,63 @@ public class MindMapView extends Pane {
      * @param event 鼠标事件
      */
     private void handleMouseReleased(MouseEvent event) {
-        if (draggedNode == null) {
-            return;
-        }
+        if (draggedNode != null) {
+            // 结束节点拖拽
+            draggedNode = null;
 
-        // 结束拖拽
-        draggedNode = null;
+            // 标记思维导图为已修改
+            if (mindMap != null) {
+                mindMap.setModified(true);
+            }
+        } else if (canvasDragging) {
+            // 结束画布拖拽
+            canvasDragging = false;
+        }
 
         // 恢复鼠标样式
         setCursor(Cursor.DEFAULT);
+    }
 
-        // 标记思维导图为已修改
-        if (mindMap != null) {
-            mindMap.setModified(true);
+    /**
+     * 处理鼠标滚轮事件
+     * @param event 滚轮事件
+     */
+    private void handleScroll(ScrollEvent event) {
+        if (mindMap == null) {
+            return;
         }
+
+        // 计算缩放因子
+        double delta = event.getDeltaY() > 0 ? 1.1 : 0.9;
+
+        // 限制缩放范围
+        double newScale = scaleValue * delta;
+        if (newScale < 0.2 || newScale > 5.0) {
+            return;
+        }
+
+        // 获取鼠标位置
+        double mouseX = event.getX();
+        double mouseY = event.getY();
+
+        // 计算鼠标在缩放前的画布坐标
+        double oldCanvasX = (mouseX - translateX) / scaleValue;
+        double oldCanvasY = (mouseY - translateY) / scaleValue;
+
+        // 更新缩放值
+        scaleValue = newScale;
+        scale.setX(scaleValue);
+        scale.setY(scaleValue);
+
+        // 计算鼠标在缩放后的画布坐标
+        double newCanvasX = (mouseX - translateX) / scaleValue;
+        double newCanvasY = (mouseY - translateY) / scaleValue;
+
+        // 调整平移量，使鼠标位置下的点保持不变
+        translateX += (newCanvasX - oldCanvasX) * scaleValue;
+        translateY += (newCanvasY - oldCanvasY) * scaleValue;
+        translate.setX(translateX);
+        translate.setY(translateY);
     }
 
     /**
@@ -941,14 +1042,30 @@ public class MindMapView extends Pane {
             return null;
         }
 
+        // 将屏幕坐标转换为画布坐标
+        double canvasX = (x - translateX) / scaleValue;
+        double canvasY = (y - translateY) / scaleValue;
+
+        System.out.println("Finding node at screen coordinates: (" + x + ", " + y + ")");
+        System.out.println("Converted to canvas coordinates: (" + canvasX + ", " + canvasY + ")");
+
         // 从所有节点中查找
         for (MindMapNode node : mindMap.getAllNodes()) {
-            if (x >= node.getX() && x <= node.getX() + node.getWidth() &&
-                    y >= node.getY() && y <= node.getY() + node.getHeight()) {
+            double nodeLeft = node.getX();
+            double nodeRight = node.getX() + node.getWidth();
+            double nodeTop = node.getY();
+            double nodeBottom = node.getY() + node.getHeight();
+
+            System.out.println("Node '" + node.getText() + "' bounds: (" + nodeLeft + ", " + nodeTop + ") to (" + nodeRight + ", " + nodeBottom + ")");
+
+            if (canvasX >= nodeLeft && canvasX <= nodeRight &&
+                canvasY >= nodeTop && canvasY <= nodeBottom) {
+                System.out.println("Found node: " + node.getText());
                 return node;
             }
         }
 
+        System.out.println("No node found at this position");
         return null;
     }
 
