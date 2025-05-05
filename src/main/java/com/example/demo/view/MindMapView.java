@@ -1046,9 +1046,6 @@ public class MindMapView extends Pane {
         double canvasX = (x - translateX) / scaleValue;
         double canvasY = (y - translateY) / scaleValue;
 
-        System.out.println("Finding node at screen coordinates: (" + x + ", " + y + ")");
-        System.out.println("Converted to canvas coordinates: (" + canvasX + ", " + canvasY + ")");
-
         // 从所有节点中查找
         for (MindMapNode node : mindMap.getAllNodes()) {
             double nodeLeft = node.getX();
@@ -1056,16 +1053,12 @@ public class MindMapView extends Pane {
             double nodeTop = node.getY();
             double nodeBottom = node.getY() + node.getHeight();
 
-            System.out.println("Node '" + node.getText() + "' bounds: (" + nodeLeft + ", " + nodeTop + ") to (" + nodeRight + ", " + nodeBottom + ")");
-
             if (canvasX >= nodeLeft && canvasX <= nodeRight &&
                 canvasY >= nodeTop && canvasY <= nodeBottom) {
-                System.out.println("Found node: " + node.getText());
                 return node;
             }
         }
 
-        System.out.println("No node found at this position");
         return null;
     }
 
