@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public abstract class CloneBasedLayout implements LayoutStrategy {
 
-    protected static final double HORIZONTAL_GAP = 150; // 水平间距 - 减小以缩短连接线
+    protected static final double HORIZONTAL_GAP = 250; // 水平间距
     protected static final double VERTICAL_GAP = 80;    // 垂直间距
 
     /**

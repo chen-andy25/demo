@@ -1,226 +1,114 @@
-/* 全局样式 - 现代设计风格 */
+/* 全局样式 - 参考MacBook界面风格 */
 .root {
-    -fx-font-family: "Poppins", "SF Pro Display", "Segoe UI", "Microsoft YaHei", sans-serif;
-    -fx-font-size: 16px;
-    -fx-background-color: #ffffff;
-}
-
-/* 基础配色变量 - 默认蓝色主题 */
-* {
-    /* 主色调 */
-    -primary-color: #4361ee;
-    -primary-color-light: #6c8cff;
-    -primary-color-dark: #303f9f;
-    
-    /* 辅助颜色 */
-    -secondary-color: #eff3ff;
-    -secondary-color-light: #f7f9ff;
-    -secondary-color-dark: #dde5ff;
-    
-    /* 边框颜色 */
-    -border-color: #cbd5e8;
-    -border-color-light: #e1e9ff;
-    -border-color-dark: #aebbd3;
-    
-    /* 功能性颜色 - 功能按钮都使用同色系的不同色调 */
-    -success-color: #4CAF50;
-    -success-color-light: #e8f5e9;
-    -info-color: #4361ee;
-    -info-color-light: #edf2ff;
-    -warning-color: #FF9800;
-    -warning-color-light: #fff3e0;
-    -danger-color: #F44336;
-    -danger-color-light: #ffebee;
-    
-    /* 文本颜色 */
-    -text-color: #2b3674;
-    -text-color-light: #3e4a85;
-    -text-color-secondary: #7b8ab8;
-}
-
-/* 文字样式 */
-.label {
-    -fx-text-fill: -text-color;
-    -fx-font-weight: normal;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
-}
-
-/* 欢迎页面样式 */
-.welcome-panel {
-    -fx-background-color: linear-gradient(to bottom right, -secondary-color, -secondary-color-light);
-    -fx-background-radius: 15px;
-    -fx-border-radius: 15px;
-    -fx-border-color: -border-color;
-    -fx-border-width: 1px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 3);
-}
-
-.welcome-text {
-    -fx-text-fill: -primary-color;
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.15), 1, 0, 0, 1);
-    -fx-font-family: "Montserrat", "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-padding: 5px 0;
-}
-
-.primary-button {
-    -fx-background-color: linear-gradient(to bottom, -primary-color, -primary-color-dark);
-    -fx-text-fill: white;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-padding: 12px 25px;
-    -fx-cursor: hand;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
-    -fx-font-family: "Montserrat", "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-transition: -fx-background-color 0.3s;
-}
-
-.primary-button:hover {
-    -fx-background-color: linear-gradient(to bottom, -primary-color-light, -primary-color);
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.3), 8, 0, 0, 2);
-}
-
-.primary-button:pressed {
-    -fx-background-color: linear-gradient(to bottom, -primary-color-dark, -primary-color-dark);
+    -fx-font-family: "SF Pro Text", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: white;
 }
 
 /* 工具栏样式 */
 .main-toolbar {
-    -fx-background-color: linear-gradient(to bottom, -secondary-color, -secondary-color-dark);
-    -fx-padding: 12px;
+    -fx-background-color: #f5f5f7;
+    -fx-padding: 10px;
     -fx-spacing: 10px;
-    -fx-border-color: -border-color;
+    -fx-border-color: #e0e0e0;
     -fx-border-width: 0px 0px 1px 0px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 5, 0, 0, 1);
 }
 
 .node-toolbar {
-    -fx-background-color: -secondary-color;
-    -fx-padding: 10px 12px;
+    -fx-background-color: #f5f5f7;
+    -fx-padding: 10px;
     -fx-spacing: 10px;
-    -fx-border-color: -border-color;
+    -fx-border-color: #e0e0e0;
     -fx-border-width: 0px 0px 1px 0px;
 }
 
 /* 标题标签样式 */
 #titleLabel {
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-font-family: "Montserrat", "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-text-fill: -primary-color;
+    -fx-text-fill: #333333;
     -fx-padding: 0 15 0 0;
-    -fx-text-alignment: center;
 }
 
-/* 按钮样式 - 现代风格 */
+/* 按钮样式 - MacOS风格 */
 .button, .menu-button {
-    -fx-background-color: linear-gradient(to bottom, white, -secondary-color-light);
-    -fx-text-fill: -text-color;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
-    -fx-border-color: -border-color;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: #d1d1d6;
     -fx-border-width: 1px;
-    -fx-padding: 8px 16px;
+    -fx-padding: 6px 12px;
     -fx-cursor: hand;
-    -fx-font-size: 16px;
-    -fx-font-family: "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-transition: -fx-background-color 0.15s, -fx-border-color 0.15s;
+    -fx-font-size: 13px;
 }
 
 .main-toolbar .button, .main-toolbar .menu-button {
-    -fx-background-color: linear-gradient(to bottom, white, -secondary-color-light);
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
 }
 
 .node-toolbar .button, .node-toolbar .menu-button {
-    -fx-background-color: linear-gradient(to bottom, white, -secondary-color-light);
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
 }
 
 .button:hover, .menu-button:hover {
-    -fx-background-color: -secondary-color-light;
-    -fx-border-color: -border-color-dark;
+    -fx-background-color: #f2f2f7;
 }
 
 .button:pressed, .menu-button:pressed {
-    -fx-background-color: -secondary-color-dark;
-    -fx-border-color: -border-color-dark;
+    -fx-background-color: #e5e5ea;
 }
 
 /* 菜单按钮的箭头图标 */
 .menu-button > .arrow-button > .arrow {
-    -fx-background-color: -primary-color;
+    -fx-background-color: #333333;
 }
 
 /* 分隔符样式 */
 .separator .line {
-    -fx-border-color: -border-color;
+    -fx-border-color: #dee2e6;
     -fx-border-width: 0 0 0 1px;
 }
 
 /* 菜单项样式 */
 .menu-item {
-    -fx-padding: 10px 18px;
-    -fx-font-family: "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-text-alignment: center;
+    -fx-padding: 6px 12px;
 }
 
 .menu-item:hover {
-    -fx-background-color: -secondary-color;
+    -fx-background-color: #f1f3f5;
 }
 
 .menu-item .label {
-    -fx-text-fill: -text-color;
-    -fx-font-size: 16px;
-    -fx-alignment: center-left;
+    -fx-text-fill: #495057;
 }
 
-/* 思维导图容器样式 */
+/* 思维导图容器样式 - MacOS风格 */
 #mindMapViewContainer {
     -fx-background-color: white;
     -fx-background-image: url('grid.png');
     -fx-background-repeat: repeat;
-    -fx-border-color: -border-color;
+    -fx-border-color: #d1d1d6;
     -fx-border-width: 1px;
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 1);
+    -fx-border-radius: 6px;
 }
 
 /* 树视图样式 */
 .tree-view {
-    -fx-background-color: -secondary-color-light;
-    -fx-border-color: -border-color;
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
     -fx-border-width: 0 0 0 1px;
-    -fx-padding: 8px;
 }
 
 .tree-cell {
-    -fx-padding: 10px 12px;
-    -fx-background-color: transparent;
-    -fx-border-radius: 4px;
-    -fx-font-family: "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-font-size: 16px;
-    -fx-alignment: center-left;
-}
-
-.tree-cell:hover {
-    -fx-background-color: -secondary-color;
+    -fx-padding: 6px 8px;
 }
 
 .tree-cell:selected {
-    -fx-background-color: -secondary-color-dark;
-    -fx-text-fill: -primary-color;
-    -fx-font-weight: bold;
+    -fx-background-color: #e9ecef;
+    -fx-text-fill: #212529;
 }
 
 /* 分割面板样式 */
@@ -230,328 +118,118 @@
 }
 
 .split-pane-divider {
-    -fx-background-color: -border-color;
+    -fx-background-color: #dee2e6;
     -fx-padding: 0 1px;
 }
 
-.split-pane-divider:hover {
-    -fx-background-color: -border-color-dark;
-}
-
-/* 功能按钮样式 - 保持色调协调统一 */
+/* 功能按钮样式 - MacOS风格 */
 #addNodeMenuButton {
-    -fx-background-color: linear-gradient(to bottom, -success-color-light, #d5ecd6);
-    -fx-text-fill: -success-color;
-    -fx-border-color: #c8e6ca;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-border-color: #d1d1d6;
 }
 
 #connectionMenuButton {
-    -fx-background-color: linear-gradient(to bottom, -info-color-light, #d6e0ff);
-    -fx-text-fill: -info-color;
-    -fx-border-color: #c7d4ff;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-border-color: #d1d1d6;
 }
 
 #editNodeMenuButton {
-    -fx-background-color: linear-gradient(to bottom, -warning-color-light, #ffe3b3);
-    -fx-text-fill: #e67700;
-    -fx-border-color: #ffd699;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-border-color: #d1d1d6;
 }
 
 #deleteNodeButton {
-    -fx-background-color: linear-gradient(to bottom, -danger-color-light, #ffd6d6);
-    -fx-text-fill: -danger-color;
-    -fx-border-color: #ffc0c0;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #ff3b30;
+    -fx-border-color: #d1d1d6;
 }
 
 #addNodeMenuButton:hover {
-    -fx-background-color: -success-color-light;
-    -fx-border-color: #a5d6a7;
+    -fx-background-color: #f2f2f7;
 }
 
 #connectionMenuButton:hover {
-    -fx-background-color: -info-color-light;
-    -fx-border-color: #9db3ff;
+    -fx-background-color: #f2f2f7;
 }
 
 #editNodeMenuButton:hover {
-    -fx-background-color: -warning-color-light;
-    -fx-border-color: #ffcc80;
+    -fx-background-color: #f2f2f7;
 }
 
 #deleteNodeButton:hover {
-    -fx-background-color: -danger-color-light;
-    -fx-border-color: #ef9a9a;
-    -fx-text-fill: -danger-color;
+    -fx-background-color: #f2f2f7;
+    -fx-text-fill: #ff3b30;
 }
 
 /* 工具栏图标按钮 */
 .icon-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-padding: 8px;
-    -fx-min-width: 34px;
-    -fx-min-height: 34px;
-    -fx-background-radius: 6px;
-    -fx-border-radius: 6px;
-    -fx-alignment: center;
+    -fx-padding: 6px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
 }
 
 .icon-button:hover {
-    -fx-background-color: -secondary-color;
-    -fx-border-color: -border-color;
+    -fx-background-color: #f1f3f5;
+    -fx-border-color: #dee2e6;
 }
 
-/* 状态栏样式 */
+/* 状态栏样式 - MacOS风格 */
 .status-bar {
-    -fx-background-color: linear-gradient(to bottom, -secondary-color, -secondary-color-dark);
-    -fx-border-color: -border-color;
+    -fx-background-color: #f5f5f7;
+    -fx-border-color: #d1d1d6;
     -fx-border-width: 1px 0 0 0;
-    -fx-padding: 10px 18px;
+    -fx-padding: 5px 10px;
 }
 
 .status-label {
-    -fx-text-fill: -text-color;
-    -fx-font-size: 16px;
-    -fx-font-family: "SF Pro Display", "Segoe UI", sans-serif;
+    -fx-text-fill: #8e8e93;
+    -fx-font-size: 12px;
 }
 
 /* 右键菜单样式 */
 .context-menu {
     -fx-background-color: white;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
-    -fx-border-color: -border-color;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: #d1d1d6;
     -fx-border-width: 1px;
-    -fx-padding: 6px;
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.2), 12, 0, 0, 3);
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 }
 
 .menu-item {
-    -fx-padding: 6px 12px;
-    -fx-background-radius: 6px;
-    -fx-transition: -fx-background-color 0.1s;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 4px;
 }
 
 .menu-item:hover {
-    -fx-background-color: -secondary-color;
+    -fx-background-color: #f2f2f7;
 }
 
 .menu-item:pressed {
-    -fx-background-color: -secondary-color-dark;
+    -fx-background-color: #e5e5ea;
 }
 
 .menu-item .label {
-    -fx-text-fill: -text-color;
+    -fx-text-fill: #333333;
 }
 
-/* 状态栏控件样式 */
-.status-bar HBox {
-    -fx-alignment: CENTER_LEFT;
-    -fx-spacing: 12px;
+/* 状态栏样式 */
+.status-bar {
+    -fx-background-color: #f5f5f7;
+    -fx-padding: 8px 15px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px 0px 0px 0px;
+    -fx-alignment: CENTER_LEFT; /* 靠左对齐 */
 }
 
-.status-bar .button {
-    -fx-padding: 6px 12px;
-    -fx-font-size: 15px;
-    -fx-alignment: center;
-}
-
-/* 连接模式按钮 */
-#connectionModeButton, #exitConnectionModeButton {
-    -fx-background-color: -info-color-light;
-    -fx-text-fill: -info-color;
-    -fx-border-color: #c7d4ff;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
+.status-label {
+    -fx-font-size: 14px; /* 增大字号 */
     -fx-font-weight: bold;
-    -fx-alignment: center;
-}
-
-#connectionModeButton:hover, #exitConnectionModeButton:hover {
-    -fx-background-color: #d6e0ff;
-    -fx-border-color: #9db3ff;
-}
-
-/* 菜单收起/展开按钮 */
-#toggleSidebarButton {
-    -fx-background-color: linear-gradient(to bottom, -secondary-color, -secondary-color-dark);
-    -fx-text-fill: -primary-color;
-    -fx-border-color: -border-color;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-font-weight: bold;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.1), 4, 0, 0, 1);
-}
-
-#toggleSidebarButton:hover {
-    -fx-background-color: -secondary-color-light;
-    -fx-border-color: -border-color-dark;
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.2), 6, 0, 0, 2);
-}
-
-/* 思维导图节点文本样式 */
-.mind-map-node-text {
-    -fx-text-fill: -primary-color;
-    -fx-font-family: "Montserrat", "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-padding: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.15), 1, 0, 0, 1);
-}
-
-/* 导图结构标题 */
-.structure-title {
-    -fx-font-family: "Montserrat", "SF Pro Display", "Segoe UI", sans-serif;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -primary-color;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-padding: 5px 0;
-}
-
-/* ====== 主题样式 ====== */
-/* 重新定义主题配色，使各个主题更加协调和谐 */
-
-/* 1. 温暖粉色主题样式 */
-.warm-pink-theme {
-    /* 主色调 */
-    -primary-color: #FF8C94;
-    -primary-color-light: #FFADB3;
-    -primary-color-dark: #E57373;
-    
-    /* 辅助颜色 */
-    -secondary-color: #FFE5E5;
-    -secondary-color-light: #FFF0F0;
-    -secondary-color-dark: #FFD6D6;
-    
-    /* 边框颜色 */
-    -border-color: #FFCCCC;
-    -border-color-light: #FFE0E0;
-    -border-color-dark: #FFB8B8;
-    
-    /* 文本颜色 */
-    -text-color: #C84A4A;
-    -text-color-light: #D67070;
-    -text-color-secondary: #E59393;
-    
-    /* 功能性颜色 */
-    -success-color: #FF8C94;
-    -success-color-light: #FFE5E5;
-    -info-color: #FF8C94;
-    -info-color-light: #FFE5E5;
-    -warning-color: #FF8C94;
-    -warning-color-light: #FFE5E5;
-    -danger-color: #E57373;
-    -danger-color-light: #FFE5E5;
-}
-
-/* 2. 紫色主题样式 */
-.purple-theme {
-    /* 主色调 */
-    -primary-color: #9D78C4;
-    -primary-color-light: #B494D6;
-    -primary-color-dark: #7B5FA7;
-    
-    /* 辅助颜色 */
-    -secondary-color: #F2E6FF;
-    -secondary-color-light: #F8F1FF;
-    -secondary-color-dark: #E6D9F2;
-    
-    /* 边框颜色 */
-    -border-color: #D9C6E9;
-    -border-color-light: #E6D9F2;
-    -border-color-dark: #C6B3D9;
-    
-    /* 文本颜色 */
-    -text-color: #5E4485;
-    -text-color-light: #7B5FA7;
-    -text-color-secondary: #9D78C4;
-    
-    /* 功能性颜色 */
-    -success-color: #9D78C4;
-    -success-color-light: #F2E6FF;
-    -info-color: #9D78C4;
-    -info-color-light: #F2E6FF;
-    -warning-color: #9D78C4;
-    -warning-color-light: #F2E6FF;
-    -danger-color: #A25EB5;
-    -danger-color-light: #F2E6FF;
-}
-
-/* 3. 蓝绿主题样式 */
-.blue-green-theme {
-    /* 主色调 */
-    -primary-color: #00B8A9;
-    -primary-color-light: #26D0C1;
-    -primary-color-dark: #00857A;
-    
-    /* 辅助颜色 */
-    -secondary-color: #E0F7F4;
-    -secondary-color-light: #EFFFFE;
-    -secondary-color-dark: #C5EBE7;
-    
-    /* 边框颜色 */
-    -border-color: #B5E1DD;
-    -border-color-light: #D0ECE9;
-    -border-color-dark: #9DD8D2;
-    
-    /* 文本颜色 */
-    -text-color: #007A70;
-    -text-color-light: #00968B;
-    -text-color-secondary: #83D0C9;
-    
-    /* 功能性颜色 */
-    -success-color: #00B8A9;
-    -success-color-light: #E0F7F4;
-    -info-color: #00B8A9;
-    -info-color-light: #E0F7F4;
-    -warning-color: #00B8A9;
-    -warning-color-light: #E0F7F4;
-    -danger-color: #F95A37;
-    -danger-color-light: #FFEDE8;
-}
-
-/* 4. 灰色主题样式 */
-.gray-theme {
-    /* 主色调 */
-    -primary-color: #607D8B;
-    -primary-color-light: #78909C;
-    -primary-color-dark: #455A64;
-    
-    /* 辅助颜色 */
-    -secondary-color: #ECEFF1;
-    -secondary-color-light: #F5F7F8;
-    -secondary-color-dark: #CFD8DC;
-    
-    /* 边框颜色 */
-    -border-color: #B0BEC5;
-    -border-color-light: #CFD8DC;
-    -border-color-dark: #90A4AE;
-    
-    /* 文本颜色 */
-    -text-color: #37474F;
-    -text-color-light: #455A64;
-    -text-color-secondary: #607D8B;
-    
-    /* 功能性颜色 */
-    -success-color: #607D8B;
-    -success-color-light: #ECEFF1;
-    -info-color: #607D8B;
-    -info-color-light: #ECEFF1;
-    -warning-color: #607D8B;
-    -warning-color-light: #ECEFF1;
-    -danger-color: #E53935;
-    -danger-color-light: #FFEBEE;
+    -fx-text-fill: #333333;
 }

@@ -15,10 +15,6 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mind-map-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-        
-        // 确保CSS文件被正确加载
-        scene.getStylesheets().add(HelloApplication.class.getResource("styles.css").toExternalForm());
-        
         stage.setTitle("思维导图绘制工具");
         stage.setScene(scene);
         stage.show();

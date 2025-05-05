@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class TreeListLayout implements LayoutStrategy {
 
-    private static final double HORIZONTAL_GAP = 150; // 水平间距 - 减小以缩短连接线
+    private static final double HORIZONTAL_GAP = 250; // 水平间距 - 增加以延长连接线
     private static final double VERTICAL_GAP = 50;    // 垂直间距
 
     @Override

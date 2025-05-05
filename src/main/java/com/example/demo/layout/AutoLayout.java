@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class AutoLayout implements LayoutStrategy {
 
-    private static final double HORIZONTAL_GAP = 100; // 水平间距 - 减小以缩短连接线
+    private static final double HORIZONTAL_GAP = 120; // 水平间距
     private static final double VERTICAL_GAP = 40;    // 垂直间距
     private static final double LEVEL_SCALE = 0.9;    // 每层级缩放比例
 

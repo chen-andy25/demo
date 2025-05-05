@@ -3,56 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.effect.DropShadow?>
 
 <BorderPane fx:id="rootPane" prefHeight="600.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.MindMapController">
     <top>
-        <VBox spacing="0">
+        <VBox>
             <ToolBar styleClass="main-toolbar" BorderPane.alignment="CENTER">
                 <items>
-                    <Label fx:id="titleLabel" text="未命名">
-                        <effect>
-                            <DropShadow color="#00000022" radius="1.0" spread="0.0" />
-                        </effect>
-                    </Label>
+                    <Label fx:id="titleLabel" text="未命名" />
                     <Separator orientation="VERTICAL" />
-                    <Button mnemonicParsing="false" onAction="#createNewMindMap" text="新建">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/new.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button mnemonicParsing="false" onAction="#openMindMap" text="打开">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/open.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button mnemonicParsing="false" onAction="#saveMindMap" text="保存">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/save.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button mnemonicParsing="false" onAction="#saveAsMindMap" text="另存为">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/save_as.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
+                    <Button mnemonicParsing="false" onAction="#createNewMindMap" text="新建" />
+                    <Button mnemonicParsing="false" onAction="#openMindMap" text="打开" />
+                    <Button mnemonicParsing="false" onAction="#saveMindMap" text="保存" />
+                    <Button mnemonicParsing="false" onAction="#saveAsMindMap" text="另存为" />
                     <Separator orientation="VERTICAL" />
                     <MenuButton mnemonicParsing="false" text="导出">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/export.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <MenuItem mnemonicParsing="false" onAction="#exportAsJPG" text="导出为JPG" />
                             <MenuItem mnemonicParsing="false" onAction="#exportAsPNG" text="导出为PNG" />
@@ -60,46 +24,22 @@
                     </MenuButton>
                     <Separator orientation="VERTICAL" />
                     <MenuButton fx:id="layoutMenuButton" mnemonicParsing="false" text="布局">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/layout.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <!-- 布局菜单项在代码中动态创建 -->
                         </items>
                     </MenuButton>
                     <Separator orientation="VERTICAL" />
                     <MenuButton fx:id="themeMenuButton" mnemonicParsing="false" text="主题">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/theme.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <!-- 布局菜单项在代码中动态创建 -->
                         </items>
                     </MenuButton>
-                    <!-- 使用Region填充空间，实现右对齐 -->
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button fx:id="toggleSidebarButton" mnemonicParsing="false" onAction="#toggleSidebar" text="收起菜单">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/sidebar.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
                 </items>
             </ToolBar>
             <ToolBar styleClass="node-toolbar">
                 <items>
                     <!-- 节点添加菜单 -->
                     <MenuButton fx:id="addNodeMenuButton" mnemonicParsing="false" text="添加节点">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/add_node.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <MenuItem fx:id="addChildMenuItem" mnemonicParsing="false" onAction="#addChildNode" text="添加子节点" />
                             <MenuItem fx:id="addSiblingMenuItem" mnemonicParsing="false" onAction="#addSiblingNode" text="添加兄弟节点" />
@@ -109,11 +49,6 @@
 
                     <!-- 节点连接菜单 -->
                     <MenuButton fx:id="connectionMenuButton" mnemonicParsing="false" text="连接操作">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/connect.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <MenuItem fx:id="connectNodesMenuItem" mnemonicParsing="false" onAction="#connectNodes" text="连接节点" />
                             <MenuItem fx:id="disconnectNodesMenuItem" mnemonicParsing="false" onAction="#disconnectNodes" text="取消连接" />
@@ -122,11 +57,6 @@
 
                     <!-- 节点编辑菜单 -->
                     <MenuButton fx:id="editNodeMenuButton" mnemonicParsing="false" text="编辑节点">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/edit.png" />
-                            </ImageView>
-                        </graphic>
                         <items>
                             <MenuItem fx:id="changeShapeMenuItem" mnemonicParsing="false" onAction="#changeNodeShape" text="更改形状" />
                             <MenuItem fx:id="changeSizeMenuItem" mnemonicParsing="false" onAction="#changeNodeSize" text="更改大小" />
@@ -137,30 +67,16 @@
                     </MenuButton>
 
                     <!-- 删除节点 -->
-                    <Button fx:id="deleteNodeButton" mnemonicParsing="false" onAction="#deleteNode" text="删除节点">
-                        <graphic>
-                            <ImageView fitHeight="16.0" fitWidth="16.0">
-                                <Image url="@icons/delete.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
+                    <Button fx:id="deleteNodeButton" mnemonicParsing="false" onAction="#deleteNode" text="删除节点" />
                 </items>
             </ToolBar>
         </VBox>
     </top>
     <center>
-        <SplitPane fx:id="mainSplitPane" dividerPositions="0.75" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <SplitPane dividerPositions="0.7" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
-                <StackPane>
-                    <Pane fx:id="mindMapViewContainer" />
-                </StackPane>
-                <VBox spacing="5">
-                    <padding>
-                        <Insets top="5" right="5" bottom="5" left="5"/>
-                    </padding>
-                    <Label text="导图结构" styleClass="structure-title" alignment="CENTER" textAlignment="CENTER"/>
-                    <TreeView fx:id="treeViewControl" VBox.vgrow="ALWAYS" />
-                </VBox>
+                <Pane fx:id="mindMapViewContainer" />
+                <TreeView fx:id="treeViewControl" />
             </items>
         </SplitPane>
     </center>
@@ -171,26 +87,11 @@
         <HBox styleClass="status-bar">
             <children>
                 <Label fx:id="statusLabel" styleClass="status-label" text="已就绪" HBox.hgrow="ALWAYS" />
-                <HBox alignment="CENTER_RIGHT" spacing="8">
-                    <Button fx:id="connectionModeButton" mnemonicParsing="false" onAction="#connectNodes" text="连接模式">
-                        <graphic>
-                            <ImageView fitHeight="14.0" fitWidth="14.0">
-                                <Image url="@icons/link.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button fx:id="exitConnectionModeButton" mnemonicParsing="false" onAction="#exitConnectionMode" text="退出连接" visible="false">
-                        <graphic>
-                            <ImageView fitHeight="14.0" fitWidth="14.0">
-                                <Image url="@icons/unlink.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
+                <HBox alignment="CENTER_RIGHT" spacing="5">
+                    <Button fx:id="connectionModeButton" mnemonicParsing="false" onAction="#connectNodes" text="连接模式" />
+                    <Button fx:id="exitConnectionModeButton" mnemonicParsing="false" onAction="#exitConnectionMode" text="退出连接" visible="false" />
                 </HBox>
             </children>
         </HBox>
     </bottom>
-    <effect>
-        <DropShadow color="#00000011" radius="10.0" spread="0.0" />
-    </effect>
 </BorderPane>

@@ -8,110 +8,110 @@ import java.util.List;
  * 主题管理器，用于管理应用程序的主题
  */
 public class ThemeManager {
-
+    
     // 单例实例
     private static ThemeManager instance;
-
+    
     // 主题列表
     private final List<Theme> themes = new ArrayList<>();
-
+    
     // 当前主题
     private Theme currentTheme;
-
+    
     /**
      * 私有构造函数，初始化主题
      */
     private ThemeManager() {
-        // 创建温暖粉色主题
-        Theme warmPink = new Theme(
-            "温暖粉色",
-            Color.web("#FCF5F5"),    // 浅粉色
-            Color.web("#EDD6CC"),    // 浅橙色
-            Color.web("#AB9D9A"),    // 浅棕色
-            Color.web("#7A6C69"),    // 深棕色
-            Color.web("#7A6C69"),    // 深棕色
-            Color.web("#AB9D9A"),    // 浅棕色
-            Color.web("#AB9D9A"),    // 浅棕色
-            Color.web("#7A6C69"),    // 深棕色
-            Color.web("#2E2827"),    // 深灰色
-            Color.web("#EDD6CC"),    // 浅橙色
-            Color.web("#FCF5F5"),    // 浅粉色
-            Color.web("#AB9D9A"),    // 浅棕色
-            Color.web("#7A6C69"),    // 深棕色
-            Color.web("#FFFFFF"),    // 背景色（白色）
-            Color.web("#2E2827")     // 文本色（深灰色）
+        // 创建默认主题（浅色）
+        Theme defaultLight = new Theme(
+            "默认（浅色）",
+            Color.rgb(255, 59, 48),    // 红色
+            Color.rgb(255, 149, 0),    // 橙色
+            Color.rgb(255, 204, 0),    // 黄色
+            Color.rgb(40, 205, 65),    // 绿色
+            Color.rgb(0, 199, 190),    // 薄荷色
+            Color.rgb(89, 173, 196),   // 深青色
+            Color.rgb(85, 190, 240),   // 青色
+            Color.rgb(0, 122, 255),    // 蓝色
+            Color.rgb(88, 86, 214),    // 靛蓝色
+            Color.rgb(175, 82, 222),   // 紫色
+            Color.rgb(255, 45, 85),    // 粉色
+            Color.rgb(162, 132, 94),   // 棕色
+            Color.rgb(142, 142, 147),  // 灰色
+            Color.rgb(255, 255, 255),  // 背景色（白色）
+            Color.rgb(0, 0, 0)         // 文本色（黑色）
         );
-
-        // 创建棕紫主题
-        Theme purpleTheme = new Theme(
-            "棕紫主题",
-            Color.web("#D9A9CC"),    // 浅紫色
-            Color.web("#F2D0ED"),    // 浅粉色
-            Color.web("#8D7BA6"),    // 深紫色
-            Color.web("#6960A6"),    // 深蓝紫色
-            Color.web("#6960A6"),    // 深蓝紫色
-            Color.web("#8D7BA6"),    // 深紫色
-            Color.web("#8D7BA6"),    // 深紫色
-            Color.web("#6960A6"),    // 深蓝紫色
-            Color.web("#010A26"),    // 深蓝色
-            Color.web("#D9A9CC"),    // 浅紫色
-            Color.web("#F2D0ED"),    // 浅粉色
-            Color.web("#8D7BA6"),    // 深紫色
-            Color.web("#6960A6"),    // 深蓝紫色
-            Color.web("#FFFFFF"),    // 背景色（白色）
-            Color.web("#010A26")     // 文本色（深蓝色）
+        
+        // 创建默认主题（深色）
+        Theme defaultDark = new Theme(
+            "默认（深色）",
+            Color.rgb(255, 69, 58),    // 红色
+            Color.rgb(255, 159, 10),   // 橙色
+            Color.rgb(255, 214, 10),   // 黄色
+            Color.rgb(50, 215, 75),    // 绿色
+            Color.rgb(102, 212, 207),  // 薄荷色
+            Color.rgb(106, 196, 220),  // 深青色
+            Color.rgb(90, 200, 245),   // 青色
+            Color.rgb(10, 132, 255),   // 蓝色
+            Color.rgb(94, 92, 230),    // 靛蓝色
+            Color.rgb(191, 90, 242),   // 紫色
+            Color.rgb(255, 55, 95),    // 粉色
+            Color.rgb(172, 142, 104),  // 棕色
+            Color.rgb(152, 152, 157),  // 灰色
+            Color.rgb(30, 30, 30),     // 背景色（深灰色）
+            Color.rgb(255, 255, 255)   // 文本色（白色）
         );
-
-        // 创建蓝绿主题
-        Theme blueGreenTheme = new Theme(
-            "蓝绿主题",
-            Color.web("#1d3752"),    // 深蓝色
-            Color.web("#214d72"),    // 中蓝色
-            Color.web("#2c7695"),    // 浅蓝色
-            Color.web("#50bfc3"),    // 浅绿色
-            Color.web("#50bfc3"),    // 浅绿色
-            Color.web("#2c7695"),    // 浅蓝色
-            Color.web("#2c7695"),    // 浅蓝色
-            Color.web("#214d72"),    // 中蓝色
-            Color.web("#1d3752"),    // 深蓝色
-            Color.web("#2c7695"),    // 浅蓝色
-            Color.web("#50bfc3"),    // 浅绿色
-            Color.web("#214d72"),    // 中蓝色
-            Color.web("#1d3752"),    // 深蓝色
-            Color.web("#FFFFFF"),    // 背景色（白色）
-            Color.web("#1d3752")     // 文本色（深蓝色）
+        
+        // 创建可访问主题（浅色）
+        Theme accessibleLight = new Theme(
+            "可访问（浅色）",
+            Color.rgb(215, 0, 21),     // 红色
+            Color.rgb(201, 52, 0),     // 橙色
+            Color.rgb(160, 90, 0),     // 黄色
+            Color.rgb(0, 125, 27),     // 绿色
+            Color.rgb(12, 129, 123),   // 薄荷色
+            Color.rgb(0, 130, 153),    // 深青色
+            Color.rgb(0, 113, 164),    // 青色
+            Color.rgb(0, 64, 221),     // 蓝色
+            Color.rgb(54, 52, 163),    // 靛蓝色
+            Color.rgb(173, 68, 171),   // 紫色
+            Color.rgb(211, 15, 69),    // 粉色
+            Color.rgb(127, 101, 69),   // 棕色
+            Color.rgb(105, 105, 110),  // 灰色
+            Color.rgb(255, 255, 255),  // 背景色（白色）
+            Color.rgb(0, 0, 0)         // 文本色（黑色）
         );
-
-        // 创建灰色主题
-        Theme grayTheme = new Theme(
-            "灰色主题",
-            Color.web("#474847"),    // 深灰色
-            Color.web("#7E7D83"),    // 中灰色
-            Color.web("#C0C0C0"),    // 浅灰色
-            Color.web("#F1F1F4"),    // 浅灰白色
-            Color.web("#F1F1F4"),    // 浅灰白色
-            Color.web("#C0C0C0"),    // 浅灰色
-            Color.web("#C0C0C0"),    // 浅灰色
-            Color.web("#7E7D83"),    // 中灰色
-            Color.web("#474847"),    // 深灰色
-            Color.web("#C0C0C0"),    // 浅灰色
-            Color.web("#F1F1F4"),    // 浅灰白色
-            Color.web("#7E7D83"),    // 中灰色
-            Color.web("#FAFBFC"),    // 接近白色
-            Color.web("#FFFFFF"),    // 背景色（白色）
-            Color.web("#474847")     // 文本色（深灰色）
+        
+        // 创建可访问主题（深色）
+        Theme accessibleDark = new Theme(
+            "可访问（深色）",
+            Color.rgb(255, 105, 97),   // 红色
+            Color.rgb(255, 179, 64),   // 橙色
+            Color.rgb(255, 212, 38),   // 黄色
+            Color.rgb(49, 222, 75),    // 绿色
+            Color.rgb(102, 212, 207),  // 薄荷色
+            Color.rgb(93, 230, 255),   // 深青色
+            Color.rgb(112, 215, 255),  // 青色
+            Color.rgb(64, 156, 255),   // 蓝色
+            Color.rgb(125, 122, 255),  // 靛蓝色
+            Color.rgb(218, 143, 255),  // 紫色
+            Color.rgb(255, 100, 130),  // 粉色
+            Color.rgb(181, 148, 105),  // 棕色
+            Color.rgb(152, 152, 157),  // 灰色
+            Color.rgb(30, 30, 30),     // 背景色（深灰色）
+            Color.rgb(255, 255, 255)   // 文本色（白色）
         );
-
+        
         // 添加主题到列表
-        themes.add(warmPink);
-        themes.add(purpleTheme);
-        themes.add(blueGreenTheme);
-        themes.add(grayTheme);
-
+        themes.add(defaultLight);
+        themes.add(defaultDark);
+        themes.add(accessibleLight);
+        themes.add(accessibleDark);
+        
         // 设置默认主题
-        currentTheme = warmPink;
+        currentTheme = defaultLight;
     }
-
+    
     /**
      * 获取单例实例
      * @return 主题管理器实例
@@ -122,7 +122,7 @@ public class ThemeManager {
         }
         return instance;
     }
-
+    
     /**
      * 获取所有主题
      * @return 主题列表
@@ -130,7 +130,7 @@ public class ThemeManager {
     public List<Theme> getThemes() {
         return themes;
     }
-
+    
     /**
      * 获取当前主题
      * @return 当前主题
@@ -138,7 +138,7 @@ public class ThemeManager {
     public Theme getCurrentTheme() {
         return currentTheme;
     }
-
+    
     /**
      * 设置当前主题
      * @param theme 主题
@@ -146,7 +146,7 @@ public class ThemeManager {
     public void setCurrentTheme(Theme theme) {
         this.currentTheme = theme;
     }
-
+    
     /**
      * 根据名称获取主题
      * @param name 主题名称

@@ -3,30 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.effect.DropShadow?>
 
-<VBox alignment="CENTER" spacing="30.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.demo.HelloController"
-      styleClass="welcome-panel">
+<?import javafx.scene.control.Button?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.demo.HelloController">
     <padding>
-        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText" styleClass="welcome-text" alignment="CENTER" textAlignment="CENTER">
-        <font>
-            <Font name="Montserrat Bold" size="22.0" />
-        </font>
-        <effect>
-            <DropShadow color="#3a4d9830" radius="3.0" spread="0.2" />
-        </effect>
-    </Label>
-    
-    <Button text="Hello!" onAction="#onHelloButtonClick" styleClass="primary-button" alignment="CENTER">
-        <effect>
-            <DropShadow color="#4568dc40" radius="8.0" spread="0.2" />
-        </effect>
-    </Button>
+    <Label fx:id="welcomeText"/>
+    <Button text="Hello!" onAction="#onHelloButtonClick"/>
 </VBox>
-
