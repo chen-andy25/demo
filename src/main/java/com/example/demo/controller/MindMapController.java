@@ -72,8 +72,19 @@ public class MindMapController {
     @FXML
     private Button deleteNodeButton; // 删除节点按钮
 
+    @FXML
+    private Button toggleSidebarButton; // 菜单收起/展开按钮
+
+    @FXML
+    private SplitPane mainSplitPane; // 主分割面板
+
     private MindMap mindMap;
     private LayoutStrategy currentLayout;
+
+    // 记录侧边栏是否已收起
+    private boolean sidebarCollapsed = false;
+    // 记录侧边栏原始分割位置
+    private double originalDividerPosition = 0.75;
 
     /**
      * 初始化控制器
@@ -1345,6 +1356,44 @@ public class MindMapController {
         javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(5));
         pause.setOnFinished(event -> statusLabel.setText("已就绪"));
         pause.play();
+    }
+
+    /**
+     * 切换侧边栏显示/隐藏
+     */
+    @FXML
+    public void toggleSidebar() {
+        if (mainSplitPane == null || mainSplitPane.getItems().size() < 2) {
+            return;
+        }
+
+        if (!sidebarCollapsed) {
+            // 保存当前分割位置
+            originalDividerPosition = mainSplitPane.getDividerPositions()[0];
+
+            // 将分割线移到1.0，完全隐藏右侧面板
+            mainSplitPane.setDividerPosition(0, 1.0);
+
+            // 更新按钮文本
+            toggleSidebarButton.setText("展开菜单");
+
+            // 更新状态
+            sidebarCollapsed = true;
+        } else {
+            // 恢复分割位置
+            mainSplitPane.setDividerPosition(0, originalDividerPosition);
+
+            // 更新按钮文本
+            toggleSidebarButton.setText("收起菜单");
+
+            // 更新状态
+            sidebarCollapsed = false;
+        }
+
+        // 重新绘制思维导图
+        if (mindMapView != null) {
+            mindMapView.draw();
+        }
     }
 
     /**

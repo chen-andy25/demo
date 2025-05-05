@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class StandardLayout implements LayoutStrategy {
 
-    private static final double HORIZONTAL_GAP = 200; // 水平间距 - 增加以延长连接线
-    private static final double VERTICAL_GAP = 40;    // 垂直间距
+    private static final double HORIZONTAL_GAP = 150; // 水平间距
+    private static final double VERTICAL_GAP = 30;    // 垂直间距
     private static final double LEVEL_SCALE = 0.9;    // 每层级缩放比例
 
     @Override

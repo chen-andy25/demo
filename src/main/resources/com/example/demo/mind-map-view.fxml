@@ -34,6 +34,9 @@
                             <!-- 布局菜单项在代码中动态创建 -->
                         </items>
                     </MenuButton>
+                    <!-- 使用Region填充空间，实现右对齐 -->
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="toggleSidebarButton" mnemonicParsing="false" onAction="#toggleSidebar" text="收起菜单" />
                 </items>
             </ToolBar>
             <ToolBar styleClass="node-toolbar">
@@ -73,7 +76,7 @@
         </VBox>
     </top>
     <center>
-        <SplitPane dividerPositions="0.7" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <SplitPane fx:id="mainSplitPane" dividerPositions="0.75" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
                 <Pane fx:id="mindMapViewContainer" />
                 <TreeView fx:id="treeViewControl" />

@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class TreeForceLayout implements LayoutStrategy {
 
-    private static final double HORIZONTAL_GAP = 200; // 水平间距
-    private static final double VERTICAL_GAP = 100;   // 垂直间距
+    private static final double HORIZONTAL_GAP = 150; // 水平间距
+    private static final double VERTICAL_GAP = 60;    // 垂直间距
 
     @Override
     public void applyLayout(MindMap mindMap, double canvasWidth, double canvasHeight) {

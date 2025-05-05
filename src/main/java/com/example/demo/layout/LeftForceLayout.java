@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class LeftForceLayout implements LayoutStrategy {
 
-    private static final double HORIZONTAL_GAP = 250; // 水平间距
-    private static final double VERTICAL_GAP = 50;    // 垂直间距
+    private static final double HORIZONTAL_GAP = 180; // 水平间距
+    private static final double VERTICAL_GAP = 35;    // 垂直间距
 
     @Override
     public void applyLayout(MindMap mindMap, double canvasWidth, double canvasHeight) {

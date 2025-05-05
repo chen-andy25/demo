@@ -559,8 +559,31 @@ public class MindMapView extends Pane {
             double dy = Math.abs(endY - startY);
             double distance = Math.sqrt(dx * dx + dy * dy);
 
-            // 曲线强度与距离成正比
-            double curveStrength = Math.min(distance * 0.2, 50);
+            // 检查线条是否太长，如果太长则缩短
+            double maxLineLength = Math.min(getWidth(), getHeight()) * 0.8; // 最大线长为画布尺寸的80%
+            if (distance > maxLineLength) {
+                // 缩短线条，保持方向不变
+                double scale = maxLineLength / distance;
+
+                // 计算新的起点和终点，保持节点边缘的连接点不变
+                double newStartX = startX + (endX - startX) * (1 - scale) * 0.5;
+                double newStartY = startY + (endY - startY) * (1 - scale) * 0.5;
+                double newEndX = endX - (endX - startX) * (1 - scale) * 0.5;
+                double newEndY = endY - (endY - startY) * (1 - scale) * 0.5;
+
+                startX = newStartX;
+                startY = newStartY;
+                endX = newEndX;
+                endY = newEndY;
+
+                // 重新计算距离
+                dx = Math.abs(endX - startX);
+                dy = Math.abs(endY - startY);
+                distance = Math.sqrt(dx * dx + dy * dy);
+            }
+
+            // 曲线强度与距离成正比，但不超过一定值
+            double curveStrength = Math.min(distance * 0.15, 30);
 
             // 绘制简洁的连线
             gc.beginPath();
